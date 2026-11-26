@@ -244,7 +244,7 @@ export function friendlyAuthError(err) {
   if (c === "auth/operation-not-allowed")
     return "This sign-in method is not enabled in Firebase Console (Authentication -> Sign-in method).";
   if (c === "auth/unauthorized-domain")
-    return "This domain is not authorized in Firebase Console (Authentication -> Settings -> Authorized domains).";
+    return `Domain "${window.location.hostname}" is not authorized for Google Sign-In. Add "${window.location.hostname}" in Firebase Console -> Authentication -> Settings -> Authorized domains, or sign in with Email & Password above.`;
   if (c === "auth/popup-closed-by-user") return "Google sign-in popup was closed.";
   if (c === "auth/popup-blocked") return "Popup was blocked by your browser. Allow popups for this site.";
   return err?.message || "Authentication failed. Please try again.";

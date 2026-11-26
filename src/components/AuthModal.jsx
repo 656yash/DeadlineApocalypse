@@ -150,7 +150,23 @@ export default function AuthModal({ onClose, onPendingName, addToast }) {
             </button>
           )}
 
-          {msg.text && <div className={msg.ok ? "ok-box" : "err-box"}>{msg.text}</div>}
+          {msg.text && (
+            <div className={msg.ok ? "ok-box" : "err-box"}>
+              {msg.text}
+              {msg.text.includes("Authorized domains") && (
+                <div style={{ marginTop: 6 }}>
+                  <a
+                    href="https://console.firebase.google.com/project/adwise-4e978/authentication/settings"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "var(--c)", textDecoration: "underline" }}
+                  >
+                    Open Firebase Authorized Domains →
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
 
           <button type="submit" className="btn" disabled={busy}>
             {busy ? "CONNECTING..." : isUp ? "☠️ CREATE ACCOUNT" : "⚔ SIGN IN"}
