@@ -1,0 +1,196 @@
+@property --ang {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.boss {
+  --u: var(--g);
+  position: relative;
+  background: linear-gradient(160deg, #15173a, #0b0c1e);
+  border: 1px solid color-mix(in srgb, var(--u) 45%, transparent);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 0 34px -12px var(--u);
+  transition: 0.25s;
+  overflow: hidden;
+}
+
+.boss:hover {
+  transform: translateY(-4px);
+}
+
+.boss:before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--u);
+}
+
+.boss.feat {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(160deg, #15173a, #0b0c1e) padding-box,
+    conic-gradient(from var(--ang), var(--u), var(--p), var(--c), var(--u)) border-box;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to { --ang: 360deg; }
+}
+
+.boss.hit {
+  animation: hit 0.7s;
+}
+
+@keyframes hit {
+  20% { filter: brightness(2.4) saturate(1.6); transform: scale(1.04) rotate(-1deg); }
+  50% { transform: scale(0.98) rotate(1deg); }
+}
+
+/* Urgency colour progression: green -> amber -> red */
+.u-safe { --u: var(--g); }
+.u-warning { --u: var(--a); }
+.u-danger { --u: var(--r); }
+.u-critical { --u: var(--r); animation: pulse 1.6s infinite; }
+.u-overdue { --u: #9ca3af; }
+.u-overdue h3 { text-decoration: line-through; text-decoration-color: var(--r); }
+.u-done { --u: var(--p); opacity: 0.78; }
+
+@keyframes pulse {
+  50% { box-shadow: 0 0 44px -4px var(--r); }
+}
+
+.bt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--m);
+}
+
+.bt-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--m);
+  display: inline-grid;
+  place-items: center;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.icon-btn:hover {
+  color: #fff;
+  border-color: var(--c);
+  background: rgba(34, 211, 238, 0.12);
+}
+
+.icon-btn.del:hover {
+  color: #fca5a5;
+  border-color: var(--r);
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--u);
+  color: var(--u);
+  font-size: 10px;
+  background: color-mix(in srgb, var(--u) 12%, transparent);
+}
+
+.boss h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 12px 0 2px;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+}
+
+.sub { color: var(--m); font-size: 13px; }
+
+.bdesc {
+  color: #b6bad6;
+  font-size: 12px;
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.lv {
+  display: inline-block;
+  margin: 10px 0;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--p);
+  border: 1px solid var(--p);
+  padding: 2px 9px;
+  border-radius: 6px;
+}
+
+.hl {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--m);
+  margin-bottom: 6px;
+}
+
+.hl b { color: var(--u); font-size: 15px; }
+
+.hp {
+  height: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.hp i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--u), color-mix(in srgb, var(--u) 55%, #fff));
+  box-shadow: 0 0 14px var(--u);
+  animation: grow 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes grow {
+  from { width: 0; }
+}
+
+.bf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.due { font-size: 12px; font-weight: 800; color: var(--u); }
+.xp { color: var(--c); font-weight: 800; font-size: 13px; }
+.big { padding: 30px; }
+.big h3 { font-size: clamp(24px, 4vw, 34px); }
+.float { animation: fl 5s ease-in-out infinite; }
+@keyframes fl { 50% { transform: translateY(-12px); } }
+.pc { font-size: 12px; font-weight: 800; color: var(--m); margin-top: 10px; letter-spacing: 0.1em; }
